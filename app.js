@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
-const tools = require('@rmlio/yarrrml-parser/lib/tools');
+const { logCanonical } = require('./utils/rdfUtils');
 const convertYAMLtoRML = require('@rmlio/yarrrml-parser/lib/rml-generator');
 
 const app = express();
@@ -32,7 +32,9 @@ app.post('/yarrrml', upload.single('yamlFile') , (req, res) => {
     const triples = y2r.convert(yamlContent);
     //const jsonldObj = JSON.parse(JSON.stringify(jsonld));
 
-    const canonicalTurtle = await tools.logCanonical(triples, y2r.getPrefixes(), y2r.getBaseIRI());
+    const canonicalTurtle = await logCanonical(triples, y2r.getPrefixes(), y2r.getBaseIRI());
+
+    console.log(canonicalTurtle);
 
     fs.unlink(req.file.path, (err) => {
       if (err) {
