@@ -1,0 +1,21 @@
+prefixes:
+  dbo: http://dbpedia.org/ontology/
+  schema: http://schema.org/
+mappings:
+  CEP-2021-S1-WEIGHT.csv:
+    sources:
+    - access: mappings.csv
+      referenceFormulation: csv
+    s: dbo:$(Weight)
+    po:
+    - p: a
+      o:
+        value: schema:Pork
+    - p: dbo:animalid
+      o:
+        value: $(Animal ID)
+        datatype: xsd:integer
+    - p: dbo:date
+      o:
+        value: $(Date)
+        datatype: xsd:date
