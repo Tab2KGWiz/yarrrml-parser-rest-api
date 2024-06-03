@@ -34,8 +34,6 @@ app.post('/yarrrml', upload.single('yamlFile') , (req, res) => {
 
     const canonicalTurtle = await logCanonical(triples, y2r.getPrefixes(), y2r.getBaseIRI());
 
-    console.log(canonicalTurtle);
-
     fs.unlink(req.file.path, (err) => {
       if (err) {
         console.error('Failed to delete the file:', req.file.path);
