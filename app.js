@@ -26,11 +26,9 @@ app.post('/yarrrml', upload.single('yamlFile') , (req, res) => {
       return res.status(500).json({ error: 'Failed to read the file' });
     }
 
-    //const y2r = new yarrrml();
     const y2r = new convertYAMLtoRML();
 
     const triples = y2r.convert(yamlContent);
-    //const jsonldObj = JSON.parse(JSON.stringify(jsonld));
 
     const canonicalTurtle = await logCanonical(triples, y2r.getPrefixes(), y2r.getBaseIRI());
 
