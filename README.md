@@ -21,3 +21,7 @@ Run the following command to run the project:
 ### Run
 
     $ docker run -p 3000:3000 -it yarrrml-parser
+
+### Docker hub
+
+    $ docker pull zihancr/yarrrml
